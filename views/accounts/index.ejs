@@ -1,0 +1,11 @@
+
+<%- include('../partials/header') %>
+
+    <% accounts.forEach(function(e){ %>
+        <ul>
+            <li><%= e.name %></li>
+            <li><%= e.email %></li>
+        </ul>
+    <% }); %>
+
+<%- include('../partials/footer') %>

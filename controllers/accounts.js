@@ -1,8 +1,20 @@
 const Account = require('../models/account');
 
 module.exports = {
-  show
+    index,
+    show
 };
+
+function index(req, res){
+
+    if(req.user){
+        Account.find({}, function(err, accounts){
+            res.render('accounts/index', {accounts});
+        });
+    }else{
+        res.redirect('/login');
+    }
+}
 
 function show(req, res)
 {

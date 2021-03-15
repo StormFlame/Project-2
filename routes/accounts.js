@@ -3,6 +3,7 @@ const passport = require('passport');
 const accountCtrl = require('../controllers/accounts');
 
 // The root route renders our only view
+router.get('/accounts', accountCtrl.index);
 router.get('/accounts/:id', accountCtrl.show);
 
 
