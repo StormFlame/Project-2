@@ -6,4 +6,20 @@
 <h5><%= account.email %></h5>
 <h5><%= account.avatar %></h5>
 
+<h2>Posts</h2>
+<% posts.forEach(function(p){ %>
+    <ul>
+        <li><%= p.title %></li>
+        <li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
+        <li><%= p.caption %></li>
+        <% if(account.name === user.name){ %>
+            <li>
+                <form action="/posts/<%= p._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete Post</button>
+                </form>
+            </li>
+        <% }; %>
+    </ul>
+<% }); %>
+
 <%- include('../partials/footer') %>

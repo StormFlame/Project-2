@@ -3,8 +3,7 @@
 
     <% accounts.forEach(function(e){ %>
         <ul>
-            <li><%= e.name %></li>
-            <li><%= e.email %></li>
+            <li><a href="accounts/<%= e.name %>"><%= e.name %></a></li>
         </ul>
     <% }); %>
 

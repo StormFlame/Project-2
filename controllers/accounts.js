@@ -1,4 +1,5 @@
 const Account = require('../models/account');
+const Post = require('../models/post');
 
 module.exports = {
     index,
@@ -20,8 +21,10 @@ function show(req, res)
 {
     if(req.user){
         Account.findOne({'name': req.params.id}, function(err, account){
-            console.log(account);
-            res.render('accounts/show', {account});
+            Post.find({account: account._id}, function(err, posts){
+                console.log(account);
+                res.render('accounts/show', {account, posts});
+            });
         });
     }else{
         res.redirect('/login');

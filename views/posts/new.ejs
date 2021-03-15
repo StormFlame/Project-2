@@ -1,0 +1,22 @@
+
+<%- include('../partials/header') %>
+
+<h1>new post</h1>
+
+<form action="/posts" method="POST">
+    <label>Title:
+        <input type="text" name="title" required>
+    </label>
+
+    <label>Image:
+        <input type="text" name="image" required>
+    </label>
+
+    <label>Caption:
+        <input type="text" name="caption" required>
+    </label>
+
+    <input type="submit" value="Post">
+</form>
+
+<%- include('../partials/footer') %>
