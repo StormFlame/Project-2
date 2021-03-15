@@ -7,11 +7,13 @@
 <h5><%= account.avatar %></h5>
 
 <h2>Posts</h2>
+
 <% posts.forEach(function(p){ %>
     <ul>
         <li><%= p.title %></li>
         <li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
         <li><%= p.caption %></li>
+
         <% if(account.name === user.name){ %>
             <li>
                 <form action="/posts/<%= p._id %>?_method=DELETE" method="POST">
@@ -19,7 +21,19 @@
                 </form>
             </li>
         <% }; %>
+
     </ul>
 <% }); %>
+
+<% if(account.name === user.name){ %>
+
+    <h2>Danger Zone</h2>
+
+    <form action="/accounts/<%= user._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Account</button>
+    </form>
+
+<% }; %>
+
 
 <%- include('../partials/footer') %>
