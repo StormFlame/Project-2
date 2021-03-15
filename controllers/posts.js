@@ -1,6 +1,5 @@
 const Post = require('../models/post');
 const Account = require('../models/account');
-const { find } = require('../models/account');
 
 module.exports = {
   index,

@@ -4,7 +4,17 @@ const mongoose = require('mongoose');
 const accountSchema = new mongoose.Schema({
     name: String,
     email: String,
-    avatar: String,
+    
+    avatar: {
+      type: String,
+      default: ''
+    },
+
+    handle:{
+      type: String,
+      default: ''
+    },
+
     googleId: String
   }, {
     timestamps: true

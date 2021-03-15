@@ -3,13 +3,15 @@
 
 	<h1>posts</h1>
 
-	<% posts.forEach(function(p){ %>
-        <ul>
-            <li><%= p.title %></li>
-			<li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
-            <li><%= p.caption %></li>
-			<li>posted by: <a href="/accounts/<%= p.accountName %>"><%= p.accountName %></a></li>
-        </ul>
-    <% }); %>
+	<% if(posts){ %>
+		<% posts.forEach(function(p){ %>
+			<ul>
+				<li><%= p.title %></li>
+				<li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
+				<li><%= p.caption %></li>
+				<li>posted by: <a href="/accounts/<%= p.accountName %>"><%= p.accountName %></a></li>
+			</ul>
+		<% }); %>
+	<% } %>
 
 <%- include('../partials/footer') %>

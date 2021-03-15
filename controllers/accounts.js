@@ -1,10 +1,13 @@
+const { db } = require('../models/account');
 const Account = require('../models/account');
 const Post = require('../models/post');
 
 module.exports = {
     index,
     show,
-    delete: deleteAccount
+    delete: deleteAccount,
+    checkUser,
+    update
 };
 
 function index(req, res){
@@ -15,6 +18,30 @@ function index(req, res){
         });
     }else{
         res.redirect('/login');
+    }
+}
+
+function update(req, res){
+    const newValues = {$set: {handle: req.body.handle, avatar: req.body.avatar}};
+    Account.findByIdAndUpdate(req.params.id, newValues, function(err, response){
+        if(err) throw err
+        console.log(response);
+        db.close();
+    });
+
+    res.redirect('/posts');
+}
+
+function checkUser(req, res){
+
+    console.log(req.user.handle, req.user.avatar);
+
+    if(req.user.handle == ''){
+        console.log('New account');
+        res.render('accounts/new')
+    }else{
+        console.log('now new account');
+        res.redirect('/posts');
     }
 }
 
