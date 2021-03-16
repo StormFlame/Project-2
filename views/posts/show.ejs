@@ -1,0 +1,38 @@
+
+<%- include('../partials/header') %>
+
+<h1><%= post.title %></h1>
+
+    <li><img src="<%= post.image %>" alt="Post-Image" style="width: 600px;"></li>
+    <li><%= post.caption %></li>
+
+<h2>Comments</h2>
+
+<% if(comments){ %>
+    <% comments.forEach(function(c){ %>
+
+        <ul>
+            <li><%= c.content %></li>
+            <li>Commented by: <a href="/accounts/<%= c.handle %>"><%= c.handle %></a></li>
+            <% if(c.handle === user.handle) { %>
+                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete Comment</button>
+                </form>
+            <% }; %>
+        </ul>
+
+    <% }); %>
+<% }; %>
+
+<% if(post.account !== user._id){ %>
+    <form action="/posts/<%= post._id %>/comments" method="POST">
+        <label>Comment:
+            <input type="text" name="content" required>
+        </label>
+
+        <button type="submit">Comment</button>
+    </form>
+<% }; %>
+
+
+<%- include('../partials/footer') %>

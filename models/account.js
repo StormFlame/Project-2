@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const accountSchema = new mongoose.Schema({
     name: String,
     email: String,
-    
+
     avatar: {
       type: String,
-      default: ''
+      default: 'https://i.imgur.com/kdRUrWH.jpg'
     },
 
     handle:{

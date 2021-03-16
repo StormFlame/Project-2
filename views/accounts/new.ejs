@@ -10,12 +10,14 @@
     <h1>create a new account</h1>
     <form action="/accounts/<%= user._id %>?_method=PUT" method="POST">
         <label>Handle: 
-            <input type="text" name="handle">
+            <input type="text" name="handle" required>
         </label>
 
         <label>Avatar: 
             <input type="text" name="avatar">
         </label>
+
+        <h5><%= message %></h5>
 
         <input type="submit" value="Create Account">
     </form>

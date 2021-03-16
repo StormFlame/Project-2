@@ -9,7 +9,8 @@
 				<li><%= p.title %></li>
 				<li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
 				<li><%= p.caption %></li>
-				<li>posted by: <a href="/accounts/<%= p.accountName %>"><%= p.accountName %></a></li>
+				<li>posted by: <a href="/accounts/<%= p.handle %>"><%= p.handle %></a></li>
+				<li><a href="/posts/<%= p._id %>">View</a></li>
 			</ul>
 		<% }); %>
 	<% } %>

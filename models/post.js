@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
-// Create your User Model
+
 const postSchema = new mongoose.Schema({
     title: String,
     image: String,
     caption: String,
 
-    accountName: String,
+    handle: String,
+
+    comments:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+  }],
 
     account:{
         type: mongoose.Schema.Types.ObjectId,
