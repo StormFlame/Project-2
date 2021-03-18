@@ -1,7 +1,7 @@
-const { render } = require('ejs');
-const { db } = require('../models/account');
 const Account = require('../models/account');
 const Post = require('../models/post');
+const Comment = require('../models/comment');
+const post = require('../models/post');
 
 module.exports = {
     index,
@@ -52,7 +52,9 @@ function show(req, res)
         Account.findOne({'handle': req.params.id}, function(err, account){
             if(err || account === null) return res.redirect('/posts');
             Post.find({account: account._id}, function(err, posts){
-                res.render('accounts/show', {account, posts: posts.reverse()});
+                Comment.find({account: account._id}, function(err, comments){
+                    res.render('accounts/show', {account, posts: posts.reverse(), comments: comments.reverse()});
+                });
             });
         });
     }else{
@@ -63,8 +65,10 @@ function show(req, res)
 function deleteAccount(req, res){
     Account.findByIdAndDelete(req.params.id, function(err){
         Post.deleteMany({account: req.params.id}, function(err){
-            if(err) return res.redirect('/posts');
-            res.redirect('/posts');
+            Comment.deleteMany({account: req.params.id}, function(err){
+                if(err) return res.redirect('/posts');
+                res.redirect('/posts');
+            });
         });
     });
 }

@@ -9,7 +9,7 @@
 
 <% posts.forEach(function(p){ %>
     <ul>
-        <li><%= p.title %></li>
+        <li><a href="/posts/<%= p._id %>"><%= p.title %></a></li>
         <li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
         <li><%= p.caption %></li>
 
@@ -21,6 +21,22 @@
             </li>
         <% }; %>
 
+    </ul>
+<% }); %>
+
+<h2>Comments</h2>
+
+<% comments.forEach(function(c){ %>
+    <ul>
+        <li><%= c.content %></li>
+        <li><a href="/posts/<%= c.post %>">Post</a></li>
+        <% if(account.name === user.name){ %>
+            <li>
+                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete Comment</button>
+                </form>
+            </li>
+        <% }; %>
     </ul>
 <% }); %>
 

@@ -3,11 +3,18 @@ const Comment = require('../models/comment');
 
 module.exports = {
   create,
-  delete: deleteComment
+  delete: deleteComment,
+  edit,
+  update
 };
 
+function edit(req, res){
+    Comment.findById(req.params.id, function(err, comment){
+        res.render('comments/edit', {comment});
+    });
+}
+
 function create(req, res){
-    console.log('CREATE NEW COMMENT');
     Post.findById(req.params.id, function(err, post){
 
         req.body.post = post._id;
@@ -20,6 +27,14 @@ function create(req, res){
             if(err) throw err;
             res.redirect(`/posts/${req.params.id}`);
         });
+    });
+}
+
+function update(req, res){
+    const newContent = {$set: {content: req.body.content}};
+    Comment.findByIdAndUpdate(req.params.id, newContent, function(err, comment){
+        if(err) throw err;
+        res.redirect(`/posts/${comment.post}`);
     });
 }
 

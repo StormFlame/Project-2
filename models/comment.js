@@ -5,6 +5,14 @@ const commentSchema = new mongoose.Schema({
   
     handle: String,
 
+    time: {
+        type: Date,
+        default: function(){
+            const now = new Date()
+            return now.setFullYear(now.getFullYear());
+        }
+    },
+
     post:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
