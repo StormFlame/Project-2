@@ -2,9 +2,12 @@
 <%- include('../partials/header') %>
 
     <% accounts.forEach(function(a){ %>
-        <ul>
-            <li><a href="accounts/<%= a.handle %>"><%= a.handle %></a></li>
-        </ul>
+        <% if(a.handle != ''){ %>
+        <div class="accounts">
+            <h2><%= a.handle %></h2>
+            <a href="accounts/<%= a.handle %>"><img src="<%= a.avatar %>" alt="Avatar"></a>
+        </div>
+        <% }; %>
     <% }); %>
 
 <%- include('../partials/footer') %>

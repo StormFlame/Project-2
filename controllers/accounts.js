@@ -66,7 +66,7 @@ function show(req, res)
         if(err || account === null) return res.redirect('/posts');
         Post.find({account: account._id}, function(err, posts){
             Comment.find({account: account._id}, function(err, comments){
-                res.render('accounts/show', {account, posts: posts.reverse(), comments: comments.reverse()});
+                res.render('accounts/show', {account, posts: posts.reverse(), comments});
             });
         });
     });

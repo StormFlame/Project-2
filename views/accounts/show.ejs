@@ -1,65 +1,80 @@
 
 <%- include('../partials/header') %>
+<div class="ac-top">
+    <h1><%= account.handle %></h1>
 
-<h1><%= account.handle %></h1>
+    <img src="<%= account.avatar %>" alt="Avater">
 
-<img src="<%= account.avatar %>" alt="Avater" style="width: 300px;">
+    <% if(user) {%>
+        <div>
+            <a href="/accounts/<%= user._id %>/edit"><button>Edit Profile</button></a>
+        </div>
+    <% }; %>
+</div>
 
-<% if(user) {%>
-    <a href="/accounts/<%= user._id %>/edit">Edit Account</a>
-<% }; %>
+<div class="ac-posts">
 
-<h2>Posts</h2>
+    <hr>
 
-<% posts.forEach(function(p){ %>
-    <ul>
-        <li><a href="/posts/<%= p._id %>"><%= p.title %></a></li>
-        <li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
-        <li><%= p.caption %></li>
-        <% if(user) {%>
-            <% if(account._id.toString() == user._id.toString()){ %>
-                <li>
-                    <form action="/posts/<%= p._id %>?_method=DELETE" method="POST">
-                        <button type="submit">Delete Post</button>
-                    </form>
-                </li>
-                <li>
-                    <a href="/posts/<%= p._id %>/edit">Edit</a>
-                </li>
-            <% }; %>
-        <% }; %>
-    </ul>
-<% }); %>
+    <h2>Posts</h2>
 
-
-<% if(user) {%>
-    <% if(account._id.toString() == user._id.toString()){ %>
-        <h2>Comments</h2>
-        <% comments.forEach(function(c){ %>
+    <div>
+        <% posts.forEach(function(p){ %>
             <ul>
-                <li><%= c.content %></li>
-                <li><a href="/posts/<%= c.post %>">Post</a></li>
-                <li>
-                    <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-                        <button type="submit">Delete Comment</button>
-                    </form>
-                </li>
+                <li><p><%= p.title %></p></li>
+
+                <li><a href="/posts/<%= p._id %>"><img src="<%= p.image %>" alt="Post-Image"></a></li>
+                <% if(user) {%>
+                    <% if(account._id.toString() == user._id.toString()){ %>
+                        <li class="ac-post-control">
+                            <a href="/posts/<%= p._id %>/edit"><button>Edit</button></a>
+                        
+                            <form action="/posts/<%= p._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% }; %>
+                <% }; %>
             </ul>
-    <% }); %>
-    <% }; %>
-<% }; %>
+        <% }); %>
+    </div>
+</div>
 
-<% if(user) {%>
-    <% if(account._id.toString() == user._id.toString()){ %>
-
-        <h2>Danger Zone</h2>
-    
-        <form action="/accounts/<%= user._id %>?_method=DELETE" method="POST">
-            <button type="submit">Delete Account</button>
-        </form>
-    
+<div class="ac-comments">
+    <% if(user) {%>
+        <hr>
+        <% if(account._id.toString() == user._id.toString()){ %>
+            <h2>Comments</h2>
+            <% comments.forEach(function(c){ %>
+                <ul>
+                    <li>Commented <a href="/posts/<%= c.post %>">here</a></li>
+                    <li class="ac-comments-content">" <%= c.content %> "</li>
+                    <hr>
+                    <li>
+                        <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                </ul>
+        <% }); %>
+        <% }; %>
+        <hr>
     <% }; %>
-<% }; %>
+</div>
+
+<div class="ac-settings">
+    <% if(user) {%>
+        <% if(account._id.toString() == user._id.toString()){ %>
+    
+            <h2>Account Settings</h2>
+        
+            <form action="/accounts/<%= user._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete Account</button>
+            </form>
+        
+        <% }; %>
+    <% }; %>
+</div>
 
 
 <%- include('../partials/footer') %>

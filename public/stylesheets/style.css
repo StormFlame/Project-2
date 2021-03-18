@@ -1,5 +1,7 @@
 body{
   background-color: whitesmoke;
+  margin: 0;
+  padding: 0;
 }
 
 nav li{
@@ -47,6 +49,17 @@ input{
   border-bottom: 2px solid grey;
 }
 
+.footer{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: lightgrey;
+  color: white;
+  text-align: center;
+  padding: 0;
+  margin-top: 30px;
+}
+
 
 /* ----------------------------------------------------------- Post */
 
@@ -56,7 +69,7 @@ input{
 
 div.post ul{
   list-style: none;
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   padding: 0;
   box-shadow: 1px 1px 2px grey;
@@ -66,7 +79,7 @@ div.post ul{
 div.post li.post-title p{
   font-size: 20px;
   margin: 10px;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 
 div.post li a{
@@ -76,6 +89,7 @@ div.post li a{
 
 div.post li.post-image a{
   padding: 0;
+  margin: 0;
 }
 
 div.post li.post-image img{
@@ -91,7 +105,7 @@ div.post li a{
 
 div.post li p{
   font-size: 15px;
-  padding: 0 10px 5px 10px;
+  padding: 0 10px 10px 10px;
 }
 
 /* ---------------------------------------------------- Post show */
@@ -100,12 +114,12 @@ div.post li p{
   width: 80%;
   margin: 0 auto;
   padding: 10px;
-  box-shadow: 1px 1px 2px grey;
 }
 
 div.post-show div{
   margin: 0 auto;
   width: 90%;
+  padding-top: 10px;
 }
 
 div.post-show img{
@@ -117,7 +131,7 @@ div.post-show img{
 div.post-show p{
   display: block;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 12px;
 }
 
 div.post-show p a{
@@ -126,7 +140,7 @@ div.post-show p a{
 
 div.post-show ul{
   list-style: none;
-  padding: 0;
+  padding: 10px 0;
 }
 
 div.post-show button, form{
@@ -134,7 +148,15 @@ div.post-show button, form{
 }
 
 div.post-show input[type=text]{
+  width: 15%;
+  display: block;
+  transition: 0.4s;
+  margin-bottom: 5px;
+}
+
+div.post-show input[type=text]:focus{
   width: 100%;
+  outline: none;
 }
 
 div.post-show div.ps-comment-controls{
@@ -149,10 +171,99 @@ div.post-show li.ps-comment-user{
 div.post-show li.ps-comment-content{
   display: block;
   width: 95%;
-  margin: 0 auto;
+  margin: 5px auto 0 auto;
 }
 
 div.post-show h4{
   font-weight: 400;
 }
 
+/* ----------------------------------------------------- Accounts */
+
+div.accounts{
+  width: 30%;
+  margin: 50px auto;
+  padding: 5px 0 40px 0;
+  box-shadow: 1px 1px 2px grey;
+  border-radius: 3px;
+  text-align: center;
+}
+
+div.accounts img{
+  display: block;
+
+  width: 70%;
+  margin: 0 auto;
+  border: solid lightgrey 2px;
+}
+
+/* ----------------------------------------------------- Accounts show */
+
+div.ac-top img{
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+}
+
+div.ac-top div{
+  text-align: center;
+  margin: 10px 0;
+}
+
+div.ac-posts, div.ac-comments, .ac-settings{
+  width: 80%;
+  margin: 0 auto;
+}
+
+div.ac-posts, div.ac-comments h2, .ac-settings{
+  text-align: center;
+}
+
+div.ac-posts ul, div.ac-comments ul{
+  list-style: none;
+  width: 25%;
+  margin: 50px auto;
+  padding: 0 0 10px 0;
+  box-shadow: 1px 1px 2px grey;
+  border-radius: 3px;
+}
+
+div.ac-posts img{
+  width: 100%;
+  transition: 1s;
+}
+
+div.ac-posts p{
+  padding: 10px;
+  margin: 0;
+}
+
+div.ac-posts .ac-post-control{
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 0;
+}
+
+div.ac-posts form{
+  padding-left: 20%;
+}
+
+div.ac-posts button{
+  display: inline-block;
+  width: 25%;
+  margin: 0 auto;
+}
+
+div.ac-comments ul{
+  padding: 10px;
+}
+
+div.ac-comments li{
+  padding: 10px 0;
+}
+
+div.ac-comments .ac-comments-content{
+  text-align: center;
+}
