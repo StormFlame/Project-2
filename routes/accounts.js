@@ -5,6 +5,7 @@ const accountCtrl = require('../controllers/accounts');
 // The root route renders our only view
 router.get('/accounts', accountCtrl.index);
 router.get('/accounts/:id', accountCtrl.show);
+router.get('/accounts/:id/edit', accountCtrl.edit);
 
 router.put('/accounts/:id', accountCtrl.update);
 router.delete('/accounts/:id', accountCtrl.delete);

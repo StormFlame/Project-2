@@ -8,7 +8,8 @@ module.exports = {
   new: newPost,
   delete: deletePost,
   show,
-  update
+  update,
+  edit
 };
 
 function index(req, res)
@@ -29,6 +30,12 @@ function show(req, res){
         Comment.find({post: post._id}, function(err, comments){
             res.render('posts/show', {post, comments});
         });
+    });
+}
+
+function edit(req, res){
+    Post.findById(req.params.id, function(err, post){
+        res.render('posts/edit', {post});
     });
 }
 
@@ -57,7 +64,11 @@ function create(req, res){
 }
 
 function update(req, res){
-
+    const newValues = {$set: {title: req.body.title, caption: req.body.caption}};
+    Post.findByIdAndUpdate(req.params.id, newValues, function(err){
+        if(err) throw err;
+        res.redirect(`/accounts/${req.user.handle}`);
+    });
 }
 
 function deletePost(req, res){

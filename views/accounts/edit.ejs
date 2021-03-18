@@ -1,0 +1,18 @@
+
+<%- include('../partials/header') %>
+
+<h1>Edit Account</h1>
+
+<form action="/accounts/<%= user._id %>?_method=PUT" method="POST">
+    <label>Handle:
+        <input type="text" name="handle" value="<%= account.handle %>" required>
+    </label>
+    <br>
+    <label>Avatar:
+        <input type="text" name="avatar" value="<%= account.avatar %>" required>
+    </label>
+
+    <input type="submit" value="Update Account">
+</form>
+
+<%- include('../partials/footer') %>

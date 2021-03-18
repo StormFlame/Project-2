@@ -5,6 +5,8 @@
 
 <img src="<%= account.avatar %>" alt="Avater" style="width: 300px;">
 
+<a href="/accounts/<%= user._id %>/edit">Edit Account</a>
+
 <h2>Posts</h2>
 
 <% posts.forEach(function(p){ %>
@@ -13,11 +15,14 @@
         <li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
         <li><%= p.caption %></li>
 
-        <% if(account.name === user.name){ %>
+        <% if(account._id.toString() == user._id.toString()){ %>
             <li>
                 <form action="/posts/<%= p._id %>?_method=DELETE" method="POST">
                     <button type="submit">Delete Post</button>
                 </form>
+            </li>
+            <li>
+                <a href="/posts/<%= p._id %>/edit">Edit</a>
             </li>
         <% }; %>
 
@@ -30,7 +35,7 @@
     <ul>
         <li><%= c.content %></li>
         <li><a href="/posts/<%= c.post %>">Post</a></li>
-        <% if(account.name === user.name){ %>
+        <% if(account._id.toString() == user._id.toString()){ %>
             <li>
                 <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
                     <button type="submit">Delete Comment</button>
@@ -40,7 +45,7 @@
     </ul>
 <% }); %>
 
-<% if(account.name === user.name){ %>
+<% if(account._id.toString() == user._id.toString()){ %>
 
     <h2>Danger Zone</h2>
 

@@ -8,7 +8,8 @@ module.exports = {
     show,
     delete: deleteAccount,
     checkUser,
-    update
+    update,
+    edit
 };
 
 function index(req, res){
@@ -23,18 +24,36 @@ function index(req, res){
     }
 }
 
-function update(req, res){
-    Account.findOne({handle: req.body.handle}, function(err, account){
+function edit(req, res){
+    Account.findById(req.params.id, function(err, account){
         if(err) throw err;
-        if(account) req.body.handle += '123';
-        const newValues = {$set: {handle: req.body.handle, avatar: req.body.avatar === '' ? req.user.avatar : req.body.avatar}};
-        Account.findByIdAndUpdate(req.params.id, newValues, function(err, response){
-            if(err) throw err
-            console.log(response);
-        });
+        res.render('accounts/edit', {account});
     });
+}
 
-    res.redirect('/posts');
+function update(req, res){
+    Account.find({handle: req.body.handle}, function(err, account){
+        if(err) throw err;
+        if(account != ''){
+            if(req.body.handle != req.user.handle){
+            res.redirect(`/accounts/${req.body.handle}`);
+            }else{
+                Account.findByIdAndUpdate(req.user._id, {$set: {avatar: req.body.avatar}}, function(err){
+                    if(err) throw err;
+                    res.redirect(`/accounts/${req.body.handle}`);
+                });
+            }
+        }else{
+            const newValues = {$set: {handle: req.body.handle, avatar: req.body.avatar}}
+            Account.findByIdAndUpdate(req.user._id, newValues, function(err){
+                Post.updateMany({handle: req.user.handle}, {$set: {handle: req.body.handle}}, function(err){
+                    Comment.updateMany({handle: req.user.handle}, {$set: {handle: req.body.handle}}, function(err){
+                        res.redirect(`/accounts/${req.body.handle}`);
+                    });
+                });
+            });
+        }
+    });
 }
 
 function checkUser(req, res){

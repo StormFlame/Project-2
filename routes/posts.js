@@ -7,6 +7,7 @@ const post = require('../models/post');
 router.get('/posts', postCtrl.index);
 router.get('/posts/new', postCtrl.new);
 router.get('/posts/:id', postCtrl.show);
+router.get('/posts/:id/edit', postCtrl.edit);
 
 router.put('/posts/:id', postCtrl.update);
 

@@ -24,7 +24,7 @@
             <li><%= c.content %></li>
             <li>Commented by: <a href="/accounts/<%= c.handle %>"><%= c.handle %></a></li>
             <li>Commented on: <%= c.time.toISOString().slice(0,16).replace('T', ' - '); %></li>
-            <% if(c.handle === user.handle) { %>
+            <% if(c.account.toString() == user._id.toString()) { %>
                 <a href="/comments/<%= c._id %>/edit">Edit</a>
 
                 <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
