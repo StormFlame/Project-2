@@ -13,15 +13,10 @@ module.exports = {
 };
 
 function index(req, res){
-
-    if(req.user){
-        Account.find({}, function(err, accounts){
-            if(err) throw err;
-            res.render('accounts/index', {accounts});
-        });
-    }else{
-        res.redirect('/login');
-    }
+    Account.find({}, function(err, accounts){
+        if(err) throw err;
+        res.render('accounts/index', {accounts});
+    });
 }
 
 function edit(req, res){
@@ -67,18 +62,14 @@ function checkUser(req, res){
 
 function show(req, res)
 {
-    if(req.user){
-        Account.findOne({'handle': req.params.id}, function(err, account){
-            if(err || account === null) return res.redirect('/posts');
-            Post.find({account: account._id}, function(err, posts){
-                Comment.find({account: account._id}, function(err, comments){
-                    res.render('accounts/show', {account, posts: posts.reverse(), comments: comments.reverse()});
-                });
+    Account.findOne({'handle': req.params.id}, function(err, account){
+        if(err || account === null) return res.redirect('/posts');
+        Post.find({account: account._id}, function(err, posts){
+            Comment.find({account: account._id}, function(err, comments){
+                res.render('accounts/show', {account, posts: posts.reverse(), comments: comments.reverse()});
             });
         });
-    }else{
-        res.redirect('/login');
-    }
+    });
 }
 
 function deleteAccount(req, res){

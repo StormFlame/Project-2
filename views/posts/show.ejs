@@ -2,39 +2,48 @@
 <%- include('../partials/header') %>
 
 <h1><%= post.title %></h1>
-<a href="/accounts/<%= post.handle %>"><%= post.handle %></a>
+<div class="post-show">
+    <div>
+        <p>Posted by: <a href="/accounts/<%= post.handle %>"><%= post.handle %></a></p>
+        <img src="<%= post.image %>" alt="Post-Image">
+        <p><%= post.caption %></p>
 
-    <li><img src="<%= post.image %>" alt="Post-Image" style="width: 600px;"></li>
-    <li><%= post.caption %></li>
+    <hr>
+    <h4><%= comments.length %> Comments</h4>
 
-<h2>Comments</h2>
+    <% if(user){ %>
+        <form action="/posts/<%= post._id %>/comments" method="POST">
+            
+            <input type="text" name="content" placeholder="Comment" required>
+        
+            <button type="submit">Comment</button>
+        </form>
+    <% }; %>
 
-<form action="/posts/<%= post._id %>/comments" method="POST">
-    <label>Comment:
-        <input type="text" name="content" required>
-    </label>
+    <% if(comments){ %>
+        <% comments.forEach(function(c){ %>
 
-    <button type="submit">Comment</button>
-</form>
+            <ul>
+                <li class="ps-comment-user" ><a href="/accounts/<%= c.handle %>"><%= c.handle %></a> - <%= c.time.toISOString().slice(0,16).replace('T', ' - ') %></li>
+                <li class="ps-comment-content"><%= c.content %></li>
 
-<% if(comments){ %>
-    <% comments.forEach(function(c){ %>
+                <div class="ps-comment-controls">
+                    <% if(user){ %>
+                        <% if(c.account.toString() == user._id.toString()) { %>
+                            
+                            <a href="/comments/<%= c._id %>/edit"><button>Edit</button></a>
 
-        <ul>
-            <li><%= c.content %></li>
-            <li>Commented by: <a href="/accounts/<%= c.handle %>"><%= c.handle %></a></li>
-            <li>Commented on: <%= c.time.toISOString().slice(0,16).replace('T', ' - '); %></li>
-            <% if(c.account.toString() == user._id.toString()) { %>
-                <a href="/comments/<%= c._id %>/edit">Edit</a>
+                            <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <% }; %>
+                    <% }; %>
+                </div>
+            </ul>
 
-                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Comment</button>
-                </form>
-            <% }; %>
-        </ul>
-
-    <% }); %>
-<% }; %>
-
+        <% }); %>
+    <% }; %>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

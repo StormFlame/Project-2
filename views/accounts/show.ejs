@@ -5,7 +5,9 @@
 
 <img src="<%= account.avatar %>" alt="Avater" style="width: 300px;">
 
-<a href="/accounts/<%= user._id %>/edit">Edit Account</a>
+<% if(user) {%>
+    <a href="/accounts/<%= user._id %>/edit">Edit Account</a>
+<% }; %>
 
 <h2>Posts</h2>
 
@@ -14,45 +16,49 @@
         <li><a href="/posts/<%= p._id %>"><%= p.title %></a></li>
         <li><img src="<%= p.image %>" alt="Post-Image" style="width: 300px;"></li>
         <li><%= p.caption %></li>
-
-        <% if(account._id.toString() == user._id.toString()){ %>
-            <li>
-                <form action="/posts/<%= p._id %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Post</button>
-                </form>
-            </li>
-            <li>
-                <a href="/posts/<%= p._id %>/edit">Edit</a>
-            </li>
-        <% }; %>
-
-    </ul>
-<% }); %>
-
-<h2>Comments</h2>
-
-<% comments.forEach(function(c){ %>
-    <ul>
-        <li><%= c.content %></li>
-        <li><a href="/posts/<%= c.post %>">Post</a></li>
-        <% if(account._id.toString() == user._id.toString()){ %>
-            <li>
-                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Comment</button>
-                </form>
-            </li>
+        <% if(user) {%>
+            <% if(account._id.toString() == user._id.toString()){ %>
+                <li>
+                    <form action="/posts/<%= p._id %>?_method=DELETE" method="POST">
+                        <button type="submit">Delete Post</button>
+                    </form>
+                </li>
+                <li>
+                    <a href="/posts/<%= p._id %>/edit">Edit</a>
+                </li>
+            <% }; %>
         <% }; %>
     </ul>
 <% }); %>
 
-<% if(account._id.toString() == user._id.toString()){ %>
 
-    <h2>Danger Zone</h2>
+<% if(user) {%>
+    <% if(account._id.toString() == user._id.toString()){ %>
+        <h2>Comments</h2>
+        <% comments.forEach(function(c){ %>
+            <ul>
+                <li><%= c.content %></li>
+                <li><a href="/posts/<%= c.post %>">Post</a></li>
+                <li>
+                    <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                        <button type="submit">Delete Comment</button>
+                    </form>
+                </li>
+            </ul>
+    <% }); %>
+    <% }; %>
+<% }; %>
 
-    <form action="/accounts/<%= user._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Account</button>
-    </form>
+<% if(user) {%>
+    <% if(account._id.toString() == user._id.toString()){ %>
 
+        <h2>Danger Zone</h2>
+    
+        <form action="/accounts/<%= user._id %>?_method=DELETE" method="POST">
+            <button type="submit">Delete Account</button>
+        </form>
+    
+    <% }; %>
 <% }; %>
 
 

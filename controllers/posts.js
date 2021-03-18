@@ -14,14 +14,10 @@ module.exports = {
 
 function index(req, res)
 {
-    if(req.user){
-        Post.find({}, function(err, posts){
-            if(err) throw err;
-            res.render('posts/index', {posts: posts.reverse()});
-        });
-    }else{
-        res.redirect('/login');
-    }
+    Post.find({}, function(err, posts){
+        if(err) throw err;
+        res.render('posts/index', {posts: posts.reverse()});
+    });
 }
 
 function show(req, res){

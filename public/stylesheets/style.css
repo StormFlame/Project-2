@@ -1,20 +1,158 @@
-.brand-logo {
-  margin-left: 15px;
+body{
+  background-color: whitesmoke;
 }
 
-.card .card-content .card-title {
-  margin-bottom: 10px;
+nav li{
+  display: inline;
+  padding: 0 20px;
 }
 
-#search-row form {
-  padding-top: 20px;
+h1{
+  text-align: center;
 }
 
-.student-name {
-  position: relative;
-  top: -5px;
+a{
+  text-decoration: none;
 }
 
-.collection-item form {
-  margin-top: -5px;
+hr{
+  border-top: 1px solid lightgrey;
 }
+
+button{
+  background-color: grey;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 2px 10px;
+  border: solid grey 1px;
+  transition: 0.4s;
+}
+
+button:hover{
+  background-color: white;
+  color: grey;
+  border: solid grey 1px;
+}
+
+button:active{
+  background-color: black;
+  color: whitesmoke;
+  border: solid black 1px;
+}
+
+input{
+  background-color: whitesmoke;
+  border: none;
+  border-bottom: 2px solid grey;
+}
+
+
+/* ----------------------------------------------------------- Post */
+
+.post{
+  padding: 10px 0;
+}
+
+div.post ul{
+  list-style: none;
+  width: 50%;
+  margin: 0 auto;
+  padding: 0;
+  box-shadow: 1px 1px 2px grey;
+  border-radius: 3px;
+}
+
+div.post li.post-title p{
+  font-size: 20px;
+  margin: 10px;
+  padding-top: 10px;
+}
+
+div.post li a{
+  text-decoration: none;
+  padding: 5px 10px 0 10px;
+}
+
+div.post li.post-image a{
+  padding: 0;
+}
+
+div.post li.post-image img{
+  width: 100%;
+  min-width: 50%;
+  padding: 0;
+}
+
+div.post li a{
+  display: block;
+  text-align: right;
+}
+
+div.post li p{
+  font-size: 15px;
+  padding: 0 10px 5px 10px;
+}
+
+/* ---------------------------------------------------- Post show */
+
+.post-show{
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  box-shadow: 1px 1px 2px grey;
+}
+
+div.post-show div{
+  margin: 0 auto;
+  width: 90%;
+}
+
+div.post-show img{
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px grey;
+}
+
+div.post-show p{
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+}
+
+div.post-show p a{
+  text-align: center;
+}
+
+div.post-show ul{
+  list-style: none;
+  padding: 0;
+}
+
+div.post-show button, form{
+  display: inline;
+}
+
+div.post-show input[type=text]{
+  width: 100%;
+}
+
+div.post-show div.ps-comment-controls{
+  width: 100%;
+  text-align: right;
+}
+
+div.post-show li.ps-comment-user{
+  font-size: 15px;
+}
+
+div.post-show li.ps-comment-content{
+  display: block;
+  width: 95%;
+  margin: 0 auto;
+}
+
+div.post-show h4{
+  font-weight: 400;
+}
+
