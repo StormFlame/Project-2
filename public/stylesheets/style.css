@@ -1,65 +1,132 @@
-body{
-  background-color: whitesmoke;
+html{
   margin: 0;
   padding: 0;
+  height: 100%;
 }
-
-nav li{
-  display: inline;
-  padding: 0 20px;
+body{
+  background-color: #f9f7f7;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  position: relative;
 }
 
 h1{
   text-align: center;
+  margin: 65px 0 0 0;
 }
 
 a{
   text-decoration: none;
+  color: #3f72af;
+  font-weight: bold;
 }
 
 hr{
   border-top: 1px solid lightgrey;
 }
 
+ul{
+  background-color: white;
+}
+
 button{
-  background-color: grey;
+  background-color: #112d4e;
   border: none;
   border-radius: 3px;
-  color: white;
+  color: #dbe2ef;
   padding: 2px 10px;
-  border: solid grey 1px;
+  border: solid #112d4e 1px;
+  font-size: 15px;
+  font-size: 1vw;
   transition: 0.4s;
 }
 
 button:hover{
   background-color: white;
-  color: grey;
-  border: solid grey 1px;
+  color: #112d4e;
+  border: solid #112d4e 1px;
 }
 
-button:active{
+button:active :not(nav){
   background-color: black;
-  color: whitesmoke;
+  color: #f9f7f7;
   border: solid black 1px;
 }
 
 input{
-  background-color: whitesmoke;
+  background-color: #f9f7f7;
   border: none;
   border-bottom: 2px solid grey;
 }
 
-.footer{
-  left: 0;
-  bottom: 0;
+/* ----------------------------------------------------- nav */
+
+nav{ 
   width: 100%;
-  background-color: lightgrey;
-  color: white;
-  text-align: center;
-  padding: 0;
-  margin-top: 30px;
+  position: fixed;
+  top: 0;
 }
 
+nav ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #112d4e;
+  width: 100%;
+  font-size: 0;
+}
+
+nav li{
+  display: inline-block;
+}
+
+nav li a{
+  display: block;
+  color: #f9f7f7;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  transition: .4s;
+}
+
+nav li a:hover{
+  color: #112d4e;
+  background-color: #f9f7f7;
+}
+.dropbtn:hover .dropdown-content{
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a:hover{
+  background-color: #112d4e;
+  color: #f9f7f7;
+}
 
 /* ----------------------------------------------------------- Post */
 
@@ -141,6 +208,7 @@ div.post-show p a{
 div.post-show ul{
   list-style: none;
   padding: 10px 0;
+  background-color: #f9f7f7;
 }
 
 div.post-show button, form{
@@ -180,6 +248,10 @@ div.post-show h4{
 
 /* ----------------------------------------------------- Accounts */
 
+div.accounts-holder{
+  margin-top: 100px;
+}
+
 div.accounts{
   width: 30%;
   margin: 50px auto;
@@ -199,10 +271,15 @@ div.accounts img{
 
 /* ----------------------------------------------------- Accounts show */
 
+div.ac-top h1{
+  margin-bottom: 10px;
+}
+
 div.ac-top img{
   display: block;
   width: 30%;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
+  box-shadow: 1px 1px 2px grey;
 }
 
 div.ac-top div{
@@ -215,17 +292,20 @@ div.ac-posts, div.ac-comments, .ac-settings{
   margin: 0 auto;
 }
 
-div.ac-posts, div.ac-comments h2, .ac-settings{
+div.ac-posts, div.ac-comments, div.ac-comments h2, .ac-settings{
   text-align: center;
 }
 
 div.ac-posts ul, div.ac-comments ul{
   list-style: none;
   width: 25%;
-  margin: 50px auto;
+  margin: 50px 20px;
   padding: 0 0 10px 0;
   box-shadow: 1px 1px 2px grey;
   border-radius: 3px;
+  font-size: 15px;
+  font-size: 1.5vw;
+  display: inline-block;
 }
 
 div.ac-posts img{
@@ -266,4 +346,58 @@ div.ac-comments li{
 
 div.ac-comments .ac-comments-content{
   text-align: center;
+}
+
+div.ac-settings{
+  padding-bottom: 50px;
+}
+
+/* ---------------------------------------------------- Login */
+
+div.login{
+  width: 50%;
+  margin: 150px auto 50px auto;
+  padding: 50px;
+  box-shadow: 1px 1px 2px grey;
+  border-radius: 3px;
+  text-align: center;
+  background-color: white;
+}
+
+div.login img{
+  width: 20%;
+}
+
+/* -------------------------------------------------- new post */
+
+.np h1{
+  margin-top: 100px;
+}
+
+.np div{
+  width: 50%;
+  margin: 100px auto 50px auto;
+  padding: 50px;
+  box-shadow: 1px 1px 2px grey;
+  border-radius: 3px;
+  text-align: center;
+  background-color: white;
+}
+
+
+
+/* ---------------------------------------------------- ids */
+
+#profile, #logout,#npost, #login{
+  float: right;
+}
+
+#footer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #112d4e;
+  padding: 0;
+  margin-top: 30px;
 }

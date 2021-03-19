@@ -8,18 +8,24 @@
   <title></title>
 </head>
 <body>
-  <nav>
+  <nav id="navbar">
     <ul>
-      <li><a href="/accounts">Profiles</a></li>
       <li><a href="/posts">Posts</a></li>
+      <li><a href="/accounts">Profiles</a></li>
       
       <% if(user){ %>
-        <li><a href="/posts/new">New Post</a></li>
-        <li><a href="/accounts/<%= user.handle %>">My Profile</a></li>
-        <li><a href="/logout">Log Out</a></li>
+          <li id="profile" class="dropbtn">
+            <a href="/accounts/<%= user.handle %>">My Profile</a>
+            <div class="dropdown-content">
+              <a href="/posts/new">New Post</a>
+              <a href="/logout">Log Out</a>
+            </div>
+          </li>
       <% }else{ %>
-        <li><a href="/login">Log In</a></li>
+        <li id="login"><a href="/login">Log In</a></li>
       <% }; %>
     </ul>
+    <br>
   </nav>
+  
   <main>

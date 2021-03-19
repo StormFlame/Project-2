@@ -6,9 +6,11 @@
     <img src="<%= account.avatar %>" alt="Avater">
 
     <% if(user) {%>
-        <div>
-            <a href="/accounts/<%= user._id %>/edit"><button>Edit Profile</button></a>
-        </div>
+        <% if(account._id.toString() == user._id.toString()){ %>
+            <div>
+                <a href="/accounts/<%= user._id %>/edit"><button>Edit Profile</button></a>
+            </div>
+        <% }; %>
     <% }; %>
 </div>
 
@@ -42,23 +44,25 @@
 
 <div class="ac-comments">
     <% if(user) {%>
-        <hr>
         <% if(account._id.toString() == user._id.toString()){ %>
+            <hr>
             <h2>Comments</h2>
-            <% comments.forEach(function(c){ %>
-                <ul>
-                    <li>Commented <a href="/posts/<%= c.post %>">here</a></li>
-                    <li class="ac-comments-content">" <%= c.content %> "</li>
-                    <hr>
-                    <li>
-                        <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </li>
-                </ul>
-        <% }); %>
-        <% }; %>
+            <div>
+                <% comments.forEach(function(c){ %>
+                    <ul>
+                        <li>Commented <a href="/posts/<%= c.post %>">here</a></li>
+                        <li class="ac-comments-content">" <%= c.content %> "</li>
+                        <hr>
+                        <li>
+                            <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    </ul>
+                <% }); %>
+            </div>
         <hr>
+        <% }; %>
     <% }; %>
 </div>
 

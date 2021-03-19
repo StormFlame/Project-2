@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
 // session middleware
 var session = require('express-session');
 var passport = require('passport');
@@ -33,7 +35,53 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 app.use(cookieParser());
+
+
+
+var multer = require('multer');
+ 
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+ 
+var upload = multer({ storage: storage });
+
+
+var imgModel = require('./models/image');
+
+app.post('/images', upload.single('image'), (req, res) => {
+ 
+  var obj = {
+      img: {
+          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+          contentType: 'image/png'
+      }
+  }
+  imgModel.create(obj, (err, item) => {
+      if (err) {
+          console.log(err);
+      }
+      else {
+          // item.save();
+          res.redirect('/');
+      }
+  });
+});
+
+
+
+
+
+
+
+
 // mount the session middleware
 app.use(session({
   secret: 'SEI Rocks!',

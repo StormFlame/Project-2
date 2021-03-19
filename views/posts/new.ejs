@@ -1,22 +1,31 @@
 
 <%- include('../partials/header') %>
 
-<h1>new post</h1>
-
-<form action="/posts" method="POST">
-    <label>Title:
-        <input type="text" name="title" required>
-    </label>
-
-    <label>Image:
-        <input type="text" name="image" required>
-    </label>
-
-    <label>Caption:
-        <input type="text" name="caption" required>
-    </label>
-
-    <input type="submit" value="Post">
-</form>
+<div class="np">
+    <h1>new post</h1>
+    <div>
+        <form action="/posts" method="POST">
+            <label>Title:
+                <input type="text" name="title" required>
+            </label><br>
+        
+            <label>Image:
+                <input type="file" name="image" required>
+            </label><br>
+        
+            <label>Caption:
+                <input type="text" name="caption" required>
+            </label><br>
+        
+            <button type="submit">Post</button>
+        </form>
+        <br>
+        <form action="/images" method="POST" enctype="multipart/form-data">
+            <label for="image">Upload Image</label>
+                <input type="file" name="image" value="" required>
+                <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

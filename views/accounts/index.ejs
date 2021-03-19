@@ -1,6 +1,9 @@
 
 <%- include('../partials/header') %>
 
+<div class="accounts-holder">
+
+    <h1>Profiles</h1>
     <% accounts.forEach(function(a){ %>
         <% if(a.handle != ''){ %>
         <div class="accounts">
@@ -9,5 +12,6 @@
         </div>
         <% }; %>
     <% }); %>
+</div>
 
 <%- include('../partials/footer') %>
