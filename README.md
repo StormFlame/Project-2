@@ -11,13 +11,13 @@ carstagram is an instagram remake. Users can post images with titles and caption
 
 #### Technologies used
 
-HTML
-CSS
-JAVASCRIPT
-NODE.JS
-EXPRESS
-MONGODB
-MONGOOSE
+1. HTML
+2. CSS
+3. JAVASCRIPT
+4. NODE.JS
+5. EXPRESS
+6. MONGODB
+7. MONGOOSE
 
 #### Getting started
 
