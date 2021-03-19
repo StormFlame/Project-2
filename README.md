@@ -9,6 +9,16 @@ carstagram is an instagram remake. Users can post images with titles and caption
 ![screenshot](/readmeImages/profiles.png)
 ![screenshot](/readmeImages/profile.png)
 
+#### Technologies used
+
+HTML
+CSS
+JAVASCRIPT
+NODE.JS
+EXPRESS
+MONGODB
+MONGOOSE
+
 #### Getting started
 
 Trello https://trello.com/b/qq83hblY/carstagram
@@ -16,3 +26,7 @@ Trello https://trello.com/b/qq83hblY/carstagram
 
 ## Site page:
 # https://car-stagram.herokuapp.com/
+
+### Next steps
+1. Adding a like button to posts
+2. Adding a search and sort feature
