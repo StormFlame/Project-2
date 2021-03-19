@@ -38,50 +38,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.use(cookieParser());
 
-
-
-var multer = require('multer');
- 
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
- 
-var upload = multer({ storage: storage });
-
-
-var imgModel = require('./models/image');
-
-app.post('/images', upload.single('image'), (req, res) => {
- 
-  var obj = {
-      img: {
-          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-          contentType: 'image/png'
-      }
-  }
-  imgModel.create(obj, (err, item) => {
-      if (err) {
-          console.log(err);
-      }
-      else {
-          // item.save();
-          res.redirect('/');
-      }
-  });
-});
-
-
-
-
-
-
-
-
 // mount the session middleware
 app.use(session({
   secret: 'SEI Rocks!',

@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
     title: String,
-    image: String,
     caption: String,
 
     handle: String,
 
     time: Date,
+
+    image: String,
 
     comments:[{
       type: mongoose.Schema.Types.ObjectId,

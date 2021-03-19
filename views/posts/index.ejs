@@ -8,7 +8,7 @@
 			<div class="post">
 				<ul>
 					<li class="post-title"><p><%= p.title %></p></li>
-					<li class="post-image" ><a href="/posts/<%= p._id %>"><img src="<%= p.image %>" alt="Post-Image"></a></li>
+					<li class="post-image" ><a href="/posts/<%= p._id %>"><img src="data:image/png;base64, <%= p.image %>" alt="Post-Image"></a></li>
 					<li><a href="/accounts/<%= p.handle %>"><%= p.handle %></a></li>
 					<li><p><%= p.caption %></p></li>
 				</ul>

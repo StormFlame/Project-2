@@ -2,6 +2,9 @@ const Post = require('../models/post');
 const Account = require('../models/account');
 const Comment = require('../models//comment');
 
+const fs = require('fs');
+const path = require('path');
+
 module.exports = {
   index,
   create,
@@ -45,13 +48,17 @@ function newPost(req, res){
 }
 
 function create(req, res){
+
     Account.findById(req.user._id, function(err, account){
         if(err) throw err;
 
         req.body.account = account;
         req.body.handle = account.handle;
+        req.body.image = fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename), 'base64');;
 
         const newPost = new Post(req.body);
+
+        console.log(newPost);
         newPost.save(function(err){
             if(err) return res.redirect('/posts');
             res.redirect('/posts');

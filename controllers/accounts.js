@@ -33,7 +33,7 @@ function update(req, res){
             if(req.body.handle != req.user.handle){
             res.redirect(`/accounts/${req.body.handle}`);
             }else{
-                Account.findByIdAndUpdate(req.user._id, {$set: {avatar: req.body.avatar}}, function(err){
+                Account.findByIdAndUpdate(req.user._id, {$set: {avatar: fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename), 'base64')}}, function(err){
                     if(err) throw err;
                     res.redirect(`/accounts/${req.body.handle}`);
                 });

@@ -4,7 +4,7 @@
 <div class="np">
     <h1>new post</h1>
     <div>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             <label>Title:
                 <input type="text" name="title" required>
             </label><br>
@@ -20,11 +20,6 @@
             <button type="submit">Post</button>
         </form>
         <br>
-        <form action="/images" method="POST" enctype="multipart/form-data">
-            <label for="image">Upload Image</label>
-                <input type="file" name="image" value="" required>
-                <button type="submit">Submit</button>
-        </form>
     </div>
 </div>
 

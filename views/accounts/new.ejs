@@ -8,14 +8,14 @@
 </head>
 <body>
     <h1>create a new account</h1>
-    <form action="/accounts/<%= user._id %>?_method=PUT" method="POST">
+    <form action="/accounts/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <label>Handle: 
             <input type="text" name="handle" required>
         </label>
 
-        <label>Avatar: 
-            <input type="text" name="avatar">
-        </label>
+        <label>Avatar:
+            <input type="file" name="avatar" required>
+        </label><br>
 
         <h5><%= message %></h5>
 
