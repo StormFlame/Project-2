@@ -1,7 +1,7 @@
 # Carstagram
 
 
-carstagram is a instagram remake. Users can post images with titles and captions. Users can also comment on post and edit thier comments. A users post will display on their profile page.
+carstagram is an instagram remake. Users can post images with titles and captions. Users can also comment on post and edit thier comments. A users post will display on their profile page.
 
 ## screenshots
 
