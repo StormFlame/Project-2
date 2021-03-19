@@ -39,6 +39,14 @@
                 <% }; %>
             </ul>
         <% }); %>
+
+        <% if(posts.length == 0) { %>
+            <% if(user.handle == account.handle){ %>
+                <h2 class="page-message">You haven't posted anything...</h2>
+            <% }else{ %>
+                <h2 class="page-message"><%= account.handle %> hasn't posted anything...</h2>
+            <% }; %>
+        <% }; %>
     </div>
 </div>
 
@@ -60,6 +68,10 @@
                         </li>
                     </ul>
                 <% }); %>
+
+                <% if(comments.length == 0) { %>
+                    <h2 class="page-message">You haven't commented on anyone's post...</h2>
+                <% }; %>
             </div>
         <hr>
         <% }; %>
