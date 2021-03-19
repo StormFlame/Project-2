@@ -6,7 +6,7 @@
     <hr>
     <div>
         <p>Posted by: <a href="/accounts/<%= post.handle %>"><%= post.handle %></a></p>
-        <img src="<%= post.image %>" alt="Post-Image">
+        <img src="data:image/png;base64, <%= post.image %>" alt="Post-Image">
         <p><%= post.caption %></p>
 
     <hr>

@@ -5,10 +5,7 @@ const accountSchema = new mongoose.Schema({
     name: String,
     email: String,
 
-    avatar: {
-      type: String,
-      default: 'https://i.imgur.com/kdRUrWH.jpg'
-    },
+    avatar: String,
 
     handle:{
       type: String,

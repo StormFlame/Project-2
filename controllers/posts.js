@@ -54,7 +54,7 @@ function create(req, res){
 
         req.body.account = account;
         req.body.handle = account.handle;
-        req.body.image = fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename), 'base64');;
+        req.body.image = fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename), 'base64');
 
         const newPost = new Post(req.body);
 

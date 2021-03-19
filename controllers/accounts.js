@@ -1,7 +1,8 @@
 const Account = require('../models/account');
 const Post = require('../models/post');
 const Comment = require('../models/comment');
-const post = require('../models/post');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = {
     index,
@@ -22,7 +23,7 @@ function index(req, res){
 function edit(req, res){
     Account.findById(req.params.id, function(err, account){
         if(err) throw err;
-        res.render('accounts/edit', {account});
+        res.render('accounts/edit', {message: '', account});
     });
 }
 
@@ -31,15 +32,18 @@ function update(req, res){
         if(err) throw err;
         if(account != ''){
             if(req.body.handle != req.user.handle){
-            res.redirect(`/accounts/${req.body.handle}`);
-            }else{
+                console.log(account);
+            res.render('accounts/edit', {message: 'That handle is already taken', account});
+            }else if(req.file){
                 Account.findByIdAndUpdate(req.user._id, {$set: {avatar: fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename), 'base64')}}, function(err){
                     if(err) throw err;
                     res.redirect(`/accounts/${req.body.handle}`);
                 });
+            }else{
+                res.redirect(`/accounts/${req.body.handle}`);
             }
         }else{
-            const newValues = {$set: {handle: req.body.handle, avatar: req.body.avatar}}
+            const newValues = {$set: {handle: req.body.handle, avatar: fs.readFileSync(path.join(__dirname, '../uploads/' + req.file.filename), 'base64')}};
             Account.findByIdAndUpdate(req.user._id, newValues, function(err){
                 Post.updateMany({handle: req.user.handle}, {$set: {handle: req.body.handle}}, function(err){
                     Comment.updateMany({handle: req.user.handle}, {$set: {handle: req.body.handle}}, function(err){
@@ -53,11 +57,13 @@ function update(req, res){
 
 function checkUser(req, res){
 
-    if(req.user.handle == ''){
-        res.render('accounts/new', {message: ''})
-    }else{
-        res.redirect('/posts');
+    if(req.user){
+        if(req.user.handle == ''){
+            res.render('accounts/edit', {message: ''})
+        }
     }
+    
+    res.redirect('/posts');
 }
 
 function show(req, res)

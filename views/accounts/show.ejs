@@ -3,7 +3,7 @@
 <div class="ac-top">
     <h1><%= account.handle %></h1>
 
-    <img src="<%= account.avatar %>" alt="Avater">
+    <img src="data:image/png;base64, <%= account.avatar %>" alt="Avater">
 
     <% if(user) {%>
         <% if(account._id.toString() == user._id.toString()){ %>
@@ -25,7 +25,7 @@
             <ul>
                 <li><p><%= p.title %></p></li>
 
-                <li><a href="/posts/<%= p._id %>"><img src="<%= p.image %>" alt="Post-Image"></a></li>
+                <li><a href="/posts/<%= p._id %>"><img src="data:image/png;base64, <%= p.image %>" alt="Post-Image"></a></li>
                 <% if(user) {%>
                     <% if(account._id.toString() == user._id.toString()){ %>
                         <li class="ac-post-control">

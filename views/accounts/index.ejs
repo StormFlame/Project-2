@@ -8,7 +8,7 @@
         <% if(a.handle != ''){ %>
         <div class="accounts">
             <h2><%= a.handle %></h2>
-            <a href="accounts/<%= a.handle %>"><img src="<%= a.avatar %>" alt="Avatar"></a>
+            <a href="accounts/<%= a.handle %>"><img src="data:image/png;base64, <%= a.avatar %>" alt="Avatar"></a>
         </div>
         <% }; %>
     <% }); %>

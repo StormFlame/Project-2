@@ -1,18 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Carstagram</title>
+</head>
+<body>
 
-<%- include('../partials/header') %>
+    <div class="pd">
 
-<h1>Edit Account</h1>
+        <h1>Profile Details</h1>
 
-<form action="/accounts/<%= user._id %>?_method=PUT" method="POST">
-    <label>Handle:
-        <input type="text" name="handle" value="<%= account.handle %>" required>
-    </label>
-    <br>
-    <label>Avatar:
-        <input type="text" name="avatar" value="<%= account.avatar %>" required>
-    </label>
+        <div>
+            <form action="/accounts/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <% if(user.handle == ''){ %>
 
-    <input type="submit" value="Update Account">
-</form>
+                        <p>Handle</p>
+                        <input type="text" name="handle" placeholder="Profile Handle" required>
 
-<%- include('../partials/footer') %>
+                        <hr>
+
+                        <p>Profile Image</p>
+                        <label class="file-upload">
+                            <input type="file" name="avatar">
+                            Select Image
+                        </label>
+
+                        <hr>
+
+                        <button type="submit">Create Profile</button>
+
+                    <% }else{ %>
+                        <p>Handle</p>
+                        <input type="text" name="handle" value="<%= user.handle %>" required>
+
+                        <hr>
+                        <p>Profile Image</p>
+                        <label class="file-upload">
+                            <input type="file" name="avatar">
+                            Update Image
+                        </label>
+
+                        <hr>
+
+                        <button type="submit">Update Profile</button>
+
+                    <% }; %>
+
+                <h5><%= message %></h5>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
